@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word to LaTeX Converter</title>
+</head>
+<body>
+    <h1>Convert Word Document to LaTeX</h1>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+          <li style="color: red;">{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.file.label }} {{ form.file() }}
+            {% for error in form.file.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.submit() }}
+        </div>
+    </form>
+</body>
+</html>
